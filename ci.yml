@@ -1,0 +1,17 @@
+prepare:
+  steps:
+    - name: Install java 17
+      command: ./.codesphere/install-java.sh
+    - name: Check folder
+      command: ls
+    - name: Download Gradle Packages
+      command: ./gradlew
+    - name: Create Jar
+      command: ./gradlew bootJar
+test:
+  steps: []
+run:
+  steps:
+    - name: Run Server
+      command: "/home/user/jdk-17.0.7/bin/java -jar
+        ./build/libs/appy-server-0.0.1-SNAPSHOT.jar "

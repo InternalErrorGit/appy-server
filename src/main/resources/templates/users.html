@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div th:switch="${users}">
+    <h2 th:case="null">Empty!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table style="border: 1px solid black;">
+            <thead>
+            <tr>
+                <th style="border: 1px solid black;">Id</th>
+                <th style="border: 1px solid black;">Username</th>
+                <th style="border: 1px solid black;">Email</th>
+                <th style="border: 1px solid black;">Password</th>
+                <th style="border: 1px solid black;">Salt</th>
+                <th style="border: 1px solid black;">Firstname</th>
+                <th style="border: 1px solid black;">Lastname</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td style="border: 1px solid black;" th:text="${user.id}"></td>
+                <td style="border: 1px solid black;" th:text="${user.username}"></td>
+                <td style="border: 1px solid black;" th:text="${user.email}"></td>
+                <td style="border: 1px solid black;" th:text="${user.password}"></td>
+                <td style="border: 1px solid black;" th:text="${user.salt}"></td>
+                <td style="border: 1px solid black;" th:text="${user.firstname}"></td>
+                <td style="border: 1px solid black;" th:text="${user.lastname}"></td>
+
+                <td><a th:href="@{/api/user/delete/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+
