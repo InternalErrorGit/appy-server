@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = UsernameExists.UsernameExistsValidator.class)
+@Constraint(validatedBy = UniqueUsername.UniqueUsernameValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueUsername {
@@ -23,7 +23,7 @@ public @interface UniqueUsername {
 
   @AllArgsConstructor
   @Service
-  class UniqueUsernameValidator implements ConstraintValidator<UsernameExists, String> {
+  class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
 
     private final UserRepository userRepository;
 
