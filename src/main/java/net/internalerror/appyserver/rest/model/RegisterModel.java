@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 import net.internalerror.appyserver.rest.model.validation.UniqueEmail;
+import net.internalerror.appyserver.rest.model.validation.UniqueUsername;
 import net.internalerror.appyserver.rest.model.validation.UsernameExists;
 import org.hibernate.validator.constraints.Length;
 
@@ -11,7 +12,7 @@ import org.hibernate.validator.constraints.Length;
 @Setter
 public class RegisterModel {
 
-  @UsernameExists(message = "MSG1001")
+  @UniqueUsername(message = "MSG1001")
   @Length(min = 5, max = 25, message = "MSG1002")
   private String username;
 
