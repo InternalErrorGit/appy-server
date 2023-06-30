@@ -14,8 +14,8 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = UsernameExists.UsernameExistsValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueUsername {
-  String message() default "Username is not unique";
+public @interface UsernameExists {
+  String message() default "Username does not exist";
 
   Class<?>[] groups() default {};
 
@@ -23,13 +23,13 @@ public @interface UniqueUsername {
 
   @AllArgsConstructor
   @Service
-  class UniqueUsernameValidator implements ConstraintValidator<UsernameExists, String> {
+  class UsernameExistsValidator implements ConstraintValidator<UsernameExists, String> {
 
     private final UserRepository userRepository;
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext context) {
-      return !userRepository.existsByUsername(username);
+      return userRepository.existsByUsername(username);
     }
   }
 

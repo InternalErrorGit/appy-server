@@ -1,9 +1,10 @@
 package net.internalerror.appyserver.rest.controller;
 
 import lombok.AllArgsConstructor;
-import net.internalerror.appyserver.data.entity.UserEntity;
+import net.internalerror.appyserver.rest.NetworkResponseObject;
 import net.internalerror.appyserver.rest.controller.impl.UserControllerImpl;
 import net.internalerror.appyserver.rest.controller.impl.base.UserControllerBase;
+import net.internalerror.appyserver.rest.model.LoginModel;
 import net.internalerror.appyserver.rest.model.RegisterModel;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,13 @@ public class UserController implements UserControllerBase {
 
   @Override
   @PostMapping("/api/user/register")
-  public UserEntity registerUser(RegisterModel registerModel) {
+  public NetworkResponseObject registerUser(RegisterModel registerModel) {
     return impl.registerUser(registerModel);
+  }
+
+  @Override
+  @PostMapping("/api/user/login")
+  public NetworkResponseObject loginUser(LoginModel loginModel) {
+    return impl.loginUser(loginModel);
   }
 }
