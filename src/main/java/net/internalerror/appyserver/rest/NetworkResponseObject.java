@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 @Getter
 @Builder
 public class NetworkResponseObject {
-
   private HttpStatus status;
   private String message;
   private Object object;
