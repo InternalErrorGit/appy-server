@@ -2,10 +2,6 @@ prepare:
   steps:
     - name: Install java 17
       command: ./.codesphere/install-java.sh
-    - name: Check folder
-      command: ls
-    - name: Download Gradle Packages
-      command: ./gradlew
     - name: Create Jar
       command: ./gradlew bootJar
 test:

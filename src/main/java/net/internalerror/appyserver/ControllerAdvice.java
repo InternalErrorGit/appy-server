@@ -20,7 +20,7 @@ public class ControllerAdvice {
     return NetworkResponseObject.builder()
         .status(HttpStatus.BAD_REQUEST)
         .message("Validation failed")
-        .object(e.getBindingResult().getAllErrors().stream()
+        .content(e.getBindingResult().getAllErrors().stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.toList())
         )

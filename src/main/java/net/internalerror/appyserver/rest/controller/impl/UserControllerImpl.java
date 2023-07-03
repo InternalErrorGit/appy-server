@@ -36,7 +36,7 @@ public class UserControllerImpl implements UserControllerBase {
 
     entity = userRepository.save(entity);
 
-    return NetworkResponseObject.builder().message(null).status(HttpStatus.OK).object(entity).build();
+    return NetworkResponseObject.builder().message(null).status(HttpStatus.OK).content(entity).build();
   }
 
   @Override
@@ -50,9 +50,9 @@ public class UserControllerImpl implements UserControllerBase {
       byte[] encodedPassword = passwordService.hashPassword(loginModel.getPassword(), user.getSalt());
 
       if (Arrays.equals(encodedPassword, user.getPassword())) {
-        return NetworkResponseObject.builder().status(HttpStatus.OK).message(null).object(tokenService.createNewAuthToken(user)).build();
+        return NetworkResponseObject.builder().status(HttpStatus.OK).message(null).content(tokenService.createNewAuthToken(user)).build();
       }
-      return NetworkResponseObject.builder().status(HttpStatus.UNAUTHORIZED).message("Login Failed").object(List.of("MSG1008")).build();
+      return NetworkResponseObject.builder().status(HttpStatus.UNAUTHORIZED).message("Login Failed").content(List.of("MSG1008")).build();
 
     }
     throw new RuntimeException("Something went wrong");
